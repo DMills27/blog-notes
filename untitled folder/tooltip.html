@@ -1,0 +1,377 @@
+<!-- comments.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inline Comments – Double-Click Safe</title>
+
+<style>
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #1d1d1f;
+  --color-secondary: #86868b;
+  --color-border: #d2d2d7;
+  --color-highlight: #007aff20;
+  --color-highlight-border: #007aff66;
+  --color-button-default: #007aff66;
+  --color-button-active: #007aff;
+  --comment-bg: #ffffff;
+  --shadow-tooltip: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --radius-lg: 16px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1c1c1e;
+    --color-fg: #f5f5f7;
+    --color-secondary: #98989d;
+    --color-border: #424245;
+    --comment-bg: #2c2c2e;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  padding: 3rem;
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+
+p {
+  font-size: 1.05rem;
+}
+
+.annotation {
+  position: relative;
+  background-color: var(--color-highlight);
+  border-bottom: 2px solid var(--color-highlight-border);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.1em 0.15em;
+}
+
+.annotation .bubble {
+  position: absolute;
+  top: -1.2em;
+  right: -0.2em;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.annotation:hover .bubble {
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  min-width: 260px;
+  background: var(--comment-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-tooltip);
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.comment {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: 15px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+.comment-author {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: var(--color-secondary);
+}
+
+.comment-input {
+  width: 100%;
+  margin-top: var(--spacing-md);
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-fg);
+  font: inherit;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.comment-post-btn {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  background: var(--color-button-default);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s ease;
+}
+
+.comment-post-btn:enabled {
+  background: var(--color-button-active);
+}
+
+.comment-post-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+</style>
+</head>
+
+<body>
+
+<p id="content">
+  Highlight any part of this paragraph to add comments. Double-clicking will no longer break the UI.
+  If you close the comment box without posting, the highlight disappears cleanly.
+</p>
+
+<script>
+const annotations = new Map();
+let activeTooltip = null;
+let activeAnnotation = null;
+let isProcessingSelection = false; // 🔒 Prevent double-processing
+
+const user = (() => {
+  const names = ["Alex", "Sam", "Jordan", "Taylor", "Morgan"];
+  const name = names[Math.floor(Math.random() * names.length)];
+  const color = `hsl(${Math.random() * 360}, 70%, 50%)`;
+  return { name, color };
+})();
+
+function isRangeWrapSafe(range) {
+  if (!range || range.collapsed) return false;
+  
+  // Must be within #content
+  const contentEl = document.getElementById("content");
+  if (!contentEl.contains(range.commonAncestorContainer)) return false;
+
+  // Must contain actual text (not just whitespace)
+  const text = range.toString().trim();
+  if (text.length === 0) return false;
+
+  // Must not contain block-level elements or nested annotations
+  const contents = range.cloneContents();
+  const walker = document.createTreeWalker(contents, NodeFilter.SHOW_ELEMENT);
+  let node;
+  while ((node = walker.nextNode())) {
+    // Reject if inside an existing annotation or complex element
+    if (node.classList?.contains('annotation') || 
+        ['DIV', 'P', 'H1', 'H2', 'BLOCKQUOTE'].includes(node.nodeName)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+document.addEventListener("mouseup", () => {
+  // 🔒 Debounce: ignore if already processing
+  if (isProcessingSelection) return;
+  
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed) return;
+
+  const range = sel.getRangeAt(0);
+  
+  // Validate thoroughly
+  if (!isRangeWrapSafe(range)) {
+    sel.removeAllRanges();
+    return;
+  }
+
+  // 🔒 Lock to prevent double-click reentrancy
+  isProcessingSelection = true;
+
+  const wrapper = document.createElement("span");
+  wrapper.className = "annotation";
+  wrapper.dataset.id = crypto.randomUUID();
+
+  const bubble = document.createElement("span");
+  bubble.className = "bubble";
+  bubble.textContent = "💬";
+  bubble.setAttribute("aria-hidden", "true");
+
+  try {
+    // Clone range to avoid mutation issues
+    const safeRange = range.cloneRange();
+    const fragment = safeRange.extractContents();
+    
+    // Ensure fragment has real content
+    if (!fragment.textContent.trim()) {
+      throw new Error("Empty fragment");
+    }
+
+    wrapper.appendChild(fragment);
+    wrapper.appendChild(bubble);
+    safeRange.insertNode(wrapper);
+    sel.removeAllRanges();
+
+    annotations.set(wrapper.dataset.id, {
+      element: wrapper,
+      comments: [],
+      committed: false
+    });
+
+    wrapper.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openTooltip(wrapper);
+    });
+
+  } catch (e) {
+    console.warn("Failed to create annotation", e);
+    // Clean up if partially created
+    if (wrapper.parentNode) wrapper.remove();
+  } finally {
+    // 🔓 Always release lock after microtask
+    setTimeout(() => {
+      isProcessingSelection = false;
+    }, 100);
+  }
+});
+
+function openTooltip(annotationEl) {
+  closeTooltip();
+  const tooltip = document.createElement("div");
+  tooltip.className = "tooltip";
+  tooltip.dataset.annotationId = annotationEl.dataset.id;
+  const rect = annotationEl.getBoundingClientRect();
+  tooltip.style.position = 'fixed';
+  tooltip.style.top = `${rect.bottom + window.scrollY + 6}px`;
+  tooltip.style.left = `${rect.left + window.scrollX}px`;
+  renderComments(tooltip);
+  document.body.appendChild(tooltip);
+  activeTooltip = tooltip;
+  activeAnnotation = annotationEl;
+}
+
+function renderComments(tooltip) {
+  tooltip.innerHTML = "";
+  const id = tooltip.dataset.annotationId;
+  const entry = annotations.get(id);
+  if (!entry) return;
+
+  entry.comments.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "comment";
+    div.innerHTML = `
+      <div class="avatar" style="background:${c.color}">${c.initial}</div>
+      <div>
+        <div class="comment-author">${c.author}</div>
+        <div class="comment-text">${c.text}</div>
+      </div>
+    `;
+    tooltip.appendChild(div);
+  });
+
+  const textarea = document.createElement("textarea");
+  textarea.className = "comment-input";
+  textarea.rows = 2;
+  textarea.placeholder = "Add a comment…";
+
+  const btn = document.createElement("button");
+  btn.className = "comment-post-btn";
+  btn.textContent = "Post";
+  btn.disabled = true;
+
+  textarea.addEventListener("input", () => {
+    btn.disabled = !textarea.value.trim();
+  });
+
+  btn.addEventListener("click", () => {
+    if (!textarea.value.trim()) return;
+    entry.comments.push({
+      author: user.name,
+      initial: user.name[0].toUpperCase(),
+      color: user.color,
+      text: textarea.value.trim()
+    });
+    entry.committed = true;
+    renderComments(tooltip);
+    textarea.focus();
+  });
+
+  tooltip.appendChild(textarea);
+  tooltip.appendChild(btn);
+  setTimeout(() => textarea.focus(), 10);
+}
+
+function closeTooltip() {
+  if (!activeTooltip || !activeAnnotation) return;
+
+  const id = activeTooltip.dataset.annotationId;
+  const entry = annotations.get(id);
+
+  if (entry && entry.comments.length === 0 && !entry.committed) {
+    const wrapper = entry.element;
+    const parent = wrapper.parentNode;
+    if (parent) {
+      // Extract only the original text (exclude 💬 bubble)
+      let originalText = '';
+      for (let node of wrapper.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          originalText += node.textContent;
+        }
+      }
+      parent.replaceChild(document.createTextNode(originalText), wrapper);
+    }
+    annotations.delete(id);
+  }
+
+  if (activeTooltip.parentNode) {
+    activeTooltip.parentNode.removeChild(activeTooltip);
+  }
+
+  activeTooltip = null;
+  activeAnnotation = null;
+}
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".annotation")) {
+    closeTooltip();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeTooltip();
+  }
+});
+</script>
+
+</body>
+</html>

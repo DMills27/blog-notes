@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-03T00:37:16+04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tale</title><subtitle>Minimal Jekyll theme for storytellers</subtitle><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><entry><title type="html">Pagination Post</title><link href="http://localhost:4000/2026-01-01/testing" rel="alternate" type="text/html" title="Pagination Post" /><published>2026-01-01T00:00:00+04:00</published><updated>2026-01-01T00:00:00+04:00</updated><id>http://localhost:4000/2026-01-01/testing</id><content type="html" xml:base="http://localhost:4000/2026-01-01/testing"><![CDATA[<p>This is a test to see if I can generate pages.</p>
+
+\[X^2 + Y^3 + D* = 102\]
+
+<p>Here is a sentence with a footnote.<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup></p>
+
+<p>pxscdfvgbhn</p>
+
+<p>$ \frac{d^2y}{dx} = 78y + z $</p>
+
+<pre><code class="language-python">def hello():
+    print("Hello, world!")
+</code></pre>
+
+<pre><code>module Whimsy where
+
+import Data.List (nub, sort)
+
+-- A mysterious transformation
+enigmatic :: [Int] -&gt; [Int]
+enigmatic xs =
+  xs
+    |&gt; map (* 2)
+    |&gt; filter even
+    |&gt; nub
+    |&gt; sort
+
+-- Custom pipe operator for fun
+(|&gt;) :: a -&gt; (a -&gt; b) -&gt; b
+x |&gt; f = f x
+
+-- Recursive Fibonacci with memo-ish behavior
+fib :: Int -&gt; Int
+fib n
+  | n &lt; 0     = error "Negative numbers anger the recursion gods"
+  | n == 0    = 0
+  | n == 1    = 1
+  | otherwise = fib (n - 1) + fib (n - 2)
+
+-- A lazy infinite stream of weird numbers
+weirdStream :: [Int]
+weirdStream = [ x * y | x &lt;- [1..], y &lt;- [1..x], x `mod` y == 0 ]
+
+-- Pattern matching just because
+describe :: Maybe Int -&gt; String
+describe Nothing  = "Nothing to see here"
+describe (Just 0) = "Zero, the void"
+describe (Just n) = "A number: " ++ show n
+</code></pre>
+
+<pre><code>use std::collections::HashMap;
+use std::thread;
+use std::time::Duration;
+
+#[derive(Debug, Clone)]
+enum Entity {
+    Warrior { name: String, strength: u32 },
+    Mage { name: String, mana: u32 },
+    Rogue { name: String, agility: u32 },
+}
+
+impl Entity {
+    fn power(&amp;self) -&gt; u32 {
+        match self {
+            Entity::Warrior { strength, .. } =&gt; strength * 2,
+            Entity::Mage { mana, .. } =&gt; mana * 3,
+            Entity::Rogue { agility, .. } =&gt; agility * 2 + 10,
+        }
+    }
+
+    fn name(&amp;self) -&gt; &amp;str {
+        match self {
+            Entity::Warrior { name, .. } =&gt; name,
+            Entity::Mage { name, .. } =&gt; name,
+            Entity::Rogue { name, .. } =&gt; name,
+        }
+    }
+}
+
+fn simulate_battle(entities: &amp;[Entity]) -&gt; HashMap&lt;String, u32&gt; {
+    let mut results = HashMap::new();
+
+    for entity in entities {
+        println!("{} enters the arena...", entity.name());
+        thread::sleep(Duration::from_millis(200));
+
+        let score = entity.power() + rand::random::&lt;u8&gt;() as u32;
+        results.insert(entity.name().to_string(), score);
+    }
+
+    results
+}
+
+fn main() {
+    let party = vec![
+        Entity::Warrior {
+            name: "Thorin".into(),
+            strength: 40,
+        },
+        Entity::Mage {
+            name: "Elora".into(),
+            mana: 30,
+        },
+        Entity::Rogue {
+            name: "Shade".into(),
+            agility: 25,
+        },
+    ];
+
+    let results = simulate_battle(&amp;party);
+
+    println!("\nFinal scores:");
+    for (name, score) in results {
+        println!("{} =&gt; {}", name, score);
+    }
+}
+</code></pre>
+
+<pre><code>package main
+import "fmt"
+func main() {
+    fmt.Println("Hello")
+}
+</code></pre>
+
+<pre><code>This is plain text (no language)
+</code></pre>
+
+<p>this is a test for the popup feature: <a href="https://en.wikipedia.org/wiki/Amber_Heard" data-popup-title="Amber Heard" data-popup-author="Wikipedia" data-popup-date="2025" data-popup-tags="actress,legal" data-popup-abstract="American actress involved in a high-profile defamation trial.">Wikipedia: Amber Heard</a></p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>This is the footnote text. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>dominic</name></author><category term="Tale" /><summary type="html"><![CDATA[This is a test to see if I can generate pages.]]></summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/2020-11-23/welcome-to-jekyll" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-11-23T01:15:07+04:00</published><updated>2020-11-23T01:15:07+04:00</updated><id>http://localhost:4000/2020-11-23/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2020-11-23/welcome-to-jekyll"><![CDATA[<p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">1</a></sup></p>
+
+<p>Jekyll requires blog post files to be named according to the following format<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>:</p>
+
+<p><code>YEAR-MONTH-DAY-title.MARKUP</code></p>
+
+<p>Where <code>YEAR</code> is a four-digit number, <code>MONTH</code> and <code>DAY</code> are both two-digit numbers, and <code>MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets<sup id="fnref:2:1"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">def print_hi(name)
+  puts &quot;Hi, #{name}&quot;
+end
+print_hi(&#39;Tom&#39;)
+#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.
+
+# There&#39;s 80 cols necessary to be supported in the template, otherwise I&#39;ll str
+# uggle.</code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:2">
+      <p>There’s <code>--livereload</code> flag that’s also cool to use. But I think I’m not ready to look into that just yet. And it should be even longer because why not. We want to wrap, and BAD. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:2:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:1">
+      <p>whatever. and <a href="https://ruby.cz/">link</a>. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><category term="jekyll" /><category term="update" /><category term="foo" /><category term="bar" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.1 There’s --livereload flag that’s also cool to use. But I think I’m not ready to look into that just yet. And it should be even longer because why not. We want to wrap, and BAD. &#8617;]]></summary></entry><entry><title type="html">Introducing Tale</title><link href="http://localhost:4000/2017-03-29/introducing-tale" rel="alternate" type="text/html" title="Introducing Tale" /><published>2017-03-29T00:00:00+04:00</published><updated>2017-03-29T00:00:00+04:00</updated><id>http://localhost:4000/2017-03-29/introducing-tale</id><content type="html" xml:base="http://localhost:4000/2017-03-29/introducing-tale"><![CDATA[<p>Tale is a minimal <a href="https://jekyllrb.com/">Jekyll</a> theme curated for storytellers. It is designed and developed by <a href="https://github.com/chesterhow/">myself</a> for a friend who writes short stories.</p>
+
+<h2 id="tale-features">Tale features</h2>
+<ul>
+  <li>Compatible with GitHub Pages</li>
+  <li>Responsive design (looks just as good on mobile)</li>
+  <li>Syntax highlighting, with the help of Pygments</li>
+  <li>Markdown and HTML text formatting</li>
+  <li>Pagination of posts</li>
+</ul>
+
+<p>Head over to the <a href="/2017-03-16/example-content">Example Content</a> post for a showcase of Tale’s text formatting features.</p>
+
+<h2 id="browser-support">Browser Support</h2>
+<p>Tale works on most if not all modern browsers, including Chrome, Safari and Firefox 👍🏼</p>
+
+<h2 id="download-or-contribute">Download or Contribute</h2>
+<p>Tale is publicly hosted on GitHub, so go ahead and download or fork it at the <a href="https://github.com/chesterhow/tale">GitHub repository</a>. If you spot any bugs or have any suggestions, feel free to create an issue or make a pull request.</p>
+
+<p>Thanks for checking out Tale!</p>]]></content><author><name>Chester</name></author><category term="Tale" /><summary type="html"><![CDATA[Tale is a minimal Jekyll theme curated for storytellers. It is designed and developed by myself for a friend who writes short stories.]]></summary></entry><entry><title type="html">Example Content</title><link href="http://localhost:4000/2017-03-16/example-content" rel="alternate" type="text/html" title="Example Content" /><published>2017-03-16T00:00:00+04:00</published><updated>2017-03-16T00:00:00+04:00</updated><id>http://localhost:4000/2017-03-16/example-content</id><content type="html" xml:base="http://localhost:4000/2017-03-16/example-content"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt ornare nibh, non elementum augue tempus eget. Pellentesque tempus scelerisque iaculis. Nullam interdum ultricies nibh quis sollicitudin. Donec ornare fermentum facilisis. Ut at sem ac sem imperdiet varius a eget tortor. Nam eu augue eget orci semper maximus in eget augue. Mauris ornare, nisl ut suscipit consectetur, mi quam interdum tellus, at rutrum quam eros ultrices mi.</p>
+
+<h1 id="headers">Headers</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"># H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6</code></pre></figure>
+
+<h1 id="h1">H1</h1>
+<h2 id="h2">H2</h2>
+<h3 id="h3">H3</h3>
+<h4 id="h4">H4</h4>
+<h5 id="h5">H5</h5>
+<h6 id="h6">H6</h6>
+
+<h1 id="text-formatting">Text formatting</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">- **Bold**
+- _Italics_
+- ~~Strikethrough~~
+- &lt;ins&gt;Underline&lt;/ins&gt;
+- &lt;sup&gt;Superscript&lt;/sup&gt;
+- &lt;sub&gt;Subscript&lt;/sub&gt;
+- Abbreviation: &lt;abbr title=&quot;HyperText Markup Language&quot;&gt;HTML&lt;/abbr&gt;
+- Citation: &lt;cite&gt;&amp;mdash; Chester How&lt;/cite&gt;</code></pre></figure>
+
+<ul>
+  <li><strong>Bold</strong></li>
+  <li><em>Italics</em></li>
+  <li><del>Strikethrough</del></li>
+  <li><ins>Underline</ins></li>
+  <li><sup>Superscript</sup></li>
+  <li><sub>Subscript</sub></li>
+  <li>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></li>
+  <li>Citation: <cite>— Chester How</cite></li>
+</ul>
+
+<h1 id="lists">Lists</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">1. Ordered list item 1
+2. Ordered list item 2
+3. Ordered list item 3
+
+* Unordered list item 1
+* Unordered list item 2
+* Unordered list item 3</code></pre></figure>
+
+<ol>
+  <li>Ordered list item 1</li>
+  <li>Ordered list item 2</li>
+  <li>Ordered list item 3</li>
+</ol>
+
+<ul>
+  <li>Unordered list item 1</li>
+  <li>Unordered list item 2</li>
+  <li>Unordered list item 3</li>
+</ul>
+
+<h1 id="links">Links</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Check out tale on [GitHub](https://github.com/chesterhow/tale).</code></pre></figure>
+
+<p>Check out tale on <a href="https://github.com/chesterhow/tale">GitHub</a>.</p>
+
+<h1 id="images">Images</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">![Placeholder image](https://placehold.it/800x400 &quot;Placeholder image&quot;)
+
+![Image with caption](https://placehold.it/700x400 &quot;Image with caption&quot;)
+_This is an image with a caption_</code></pre></figure>
+
+<p><img src="https://placehold.it/800x400" alt="Placeholder image" title="Placeholder image" /></p>
+
+<p><img src="https://placehold.it/700x400" alt="Image with caption" title="Image with caption" />
+<em>This is an image with a caption</em></p>
+
+<h1 id="code-and-syntax-highlighting">Code and Syntax Highlighting</h1>
+<p>Use back-ticks for <code>inline code</code>. Multi-line code snippets are supported too through Pygments.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">// Sample javascript code
+var s = &quot;JavaScript syntax highlighting&quot;;
+alert(s);</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"># Sample python code
+s = &quot;Python syntax highlighting&quot;
+print s</code></pre></figure>
+
+<p>Adding <code>linenos</code> to the highlight tag enables line numbers.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">// Sample javascript code
+var s = &quot;JavaScript syntax highlighting&quot;;
+alert(s);</code></pre></figure>
+
+<h1 id="blockquotes">Blockquotes</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">&gt; Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</code></pre></figure>
+
+<blockquote>
+  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+</blockquote>
+
+<h1 id="horizontal-rule--line-break">Horizontal Rule &amp; Line Break</h1>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Use `&lt;hr&gt;` for horizontal rules
+
+&lt;hr&gt;
+
+and `&lt;br&gt;` for line breaks.
+
+&lt;br&gt;</code></pre></figure>
+
+<p>Use <code>&lt;hr&gt;</code> for horizontal rules</p>
+
+<hr />
+
+<p>and <code>&lt;br&gt;</code> for line breaks.</p>
+
+<p><br /></p>
+
+<p><em>The end</em></p>]]></content><author><name>Chester</name></author><category term="Example" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt ornare nibh, non elementum augue tempus eget. Pellentesque tempus scelerisque iaculis. Nullam interdum ultricies nibh quis sollicitudin. Donec ornare fermentum facilisis. Ut at sem ac sem imperdiet varius a eget tortor. Nam eu augue eget orci semper maximus in eget augue. Mauris ornare, nisl ut suscipit consectetur, mi quam interdum tellus, at rutrum quam eros ultrices mi.]]></summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/2017-03-10/welcome-to-jekyll" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2017-03-10T00:00:00+04:00</published><updated>2017-03-10T00:00:00+04:00</updated><id>http://localhost:4000/2017-03-10/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2017-03-10/welcome-to-jekyll"><![CDATA[<p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>Here’s a simple footnote,<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and here’s a longer one.<sup id="fnref:bignote"><a href="#fn:bignote" class="footnote" rel="footnote" role="doc-noteref">2</a></sup></p>
+
+<p>Deleted the html.</p>
+
+<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets: like these</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">def print_hi(name)
+  puts &quot;Hi, #{name}&quot;
+end
+print_hi(&#39;Tom&#39;)
+#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>This is the first footnote. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:bignote">
+      <p>Here’s one with multiple paragraphs and code.</p>
+
+      <p>Indent paragraphs to include them in the footnote.</p>
+
+      <p><code>{ my code }</code></p>
+
+      <p>Add as many paragraphs as you like. <a href="#fnref:bignote" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>Jekyll</name></author><category term="Jekyll" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry><entry><title type="html">The Case of the Missing Post</title><link href="http://localhost:4000/2017-03-07/the-case-of-the-missing-post" rel="alternate" type="text/html" title="The Case of the Missing Post" /><published>2017-03-07T00:00:00+04:00</published><updated>2017-03-07T00:00:00+04:00</updated><id>http://localhost:4000/2017-03-07/the-case-of-the-missing-post</id><content type="html" xml:base="http://localhost:4000/2017-03-07/the-case-of-the-missing-post"><![CDATA[<p>Kitty power! and sometimes switches in french and say “miaou” just because well why not man running from cops stops to pet cats, goes to jail, yet licks your face or drink water out of the faucet so jumps off balcony gives owner dead mouse at present then poops in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat slides down the water slide and into pool and swims even though it does not like water yet drink water out of the faucet. Pelt around the house and up and down stairs chasing phantoms.</p>
+
+<p>Sit in window and stare ooo, a bird! yum. Sit and stare. Sweet beast loves cheeseburgers. Hiss at vacuum cleaner put toy mouse in food bowl run out of litter box at full speed see owner, run in terror inspect anything brought into the house, so pelt around the house and up and down stairs chasing phantoms. Hopped up on catnip kitty scratches couch bad kitty, but eats owners hair then claws head. Lie on your belly and purr when you are asleep kitty power! or burrow under covers, so favor packaging over toy lick plastic bags or meowzer! yet unwrap toilet paper.</p>
+
+<p><a href="http://www.catipsum.com/">Cat Ipsum</a></p>]]></content><author><name>Chester</name></author><category term="Tale" /><summary type="html"><![CDATA[Kitty power! and sometimes switches in french and say “miaou” just because well why not man running from cops stops to pet cats, goes to jail, yet licks your face or drink water out of the faucet so jumps off balcony gives owner dead mouse at present then poops in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat slides down the water slide and into pool and swims even though it does not like water yet drink water out of the faucet. Pelt around the house and up and down stairs chasing phantoms.]]></summary></entry><entry><title type="html">The Mystery of the Filler Post</title><link href="http://localhost:4000/2017-03-06/the-mystery-of-the-filler-post" rel="alternate" type="text/html" title="The Mystery of the Filler Post" /><published>2017-03-06T00:00:00+04:00</published><updated>2017-03-06T00:00:00+04:00</updated><id>http://localhost:4000/2017-03-06/the-mystery-of-the-filler-post</id><content type="html" xml:base="http://localhost:4000/2017-03-06/the-mystery-of-the-filler-post"><![CDATA[<p>Hornswaggle measured fer yer chains chase run a shot across the bow Chain Shot flogging Pirate Round galleon rope’s end aft. Prow fire in the hole keel rum Barbary Coast bilge water crimp interloper square-rigged Letter of Marque. Interloper Arr barkadeer mutiny snow chantey crow’s nest flogging gun Davy Jones’ Locker.</p>
+
+<p>Bilge jolly boat barque topsail interloper chandler spanker scuttle Arr sloop. Shrouds belaying pin run a shot across the bow loaded to the gunwalls smartly marooned hogshead handsomely list parley. Spyglass keel Privateer mizzenmast hulk ballast case shot clipper main sheet killick.</p>
+
+<p>Careen hempen halter Letter of Marque pillage swing the lead take a caulk Sail ho jury mast walk the plank ho. Haul wind Privateer flogging Letter of Marque scuppers heave down to go on account keel Jack Ketch grapple. Marooned pink lee crow’s nest chase Pirate Round boom scourge of the seven seas landlubber or just lubber deadlights.</p>
+
+<p><a href="http://pirateipsum.me/">Pirate Ipsum</a></p>]]></content><author><name>Chester</name></author><category term="Tale" /><summary type="html"><![CDATA[Hornswaggle measured fer yer chains chase run a shot across the bow Chain Shot flogging Pirate Round galleon rope’s end aft. Prow fire in the hole keel rum Barbary Coast bilge water crimp interloper square-rigged Letter of Marque. Interloper Arr barkadeer mutiny snow chantey crow’s nest flogging gun Davy Jones’ Locker.]]></summary></entry><entry><title type="html">Pagination Post</title><link href="http://localhost:4000/2017-03-05/pagination-post" rel="alternate" type="text/html" title="Pagination Post" /><published>2017-03-05T00:00:00+04:00</published><updated>2017-03-05T00:00:00+04:00</updated><id>http://localhost:4000/2017-03-05/pagination-post</id><content type="html" xml:base="http://localhost:4000/2017-03-05/pagination-post"><![CDATA[<p>Here we see <strong>Tale’s</strong> pagination feature in action. It is set to 5 posts per page by default. Feel free to change this number in the <code>_config.yml</code> file!</p>]]></content><author><name>Chester</name></author><category term="Tale" /><summary type="html"><![CDATA[Here we see Tale’s pagination feature in action. It is set to 5 posts per page by default. Feel free to change this number in the _config.yml file!]]></summary></entry></feed>
