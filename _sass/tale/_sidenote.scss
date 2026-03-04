@@ -18,16 +18,49 @@
     border-color: $highlight-color;
   }
 
-  p {
-    display: inline;
+  // ── Rich content ────────────────────────────────────────────────────────
+  // Paragraphs display as block (no `display: inline` override) because
+  // the ordinal header is now inserted inside the first <p>, so no special
+  // treatment of <p> is needed.  Block display also lets code blocks,
+  // images, and lists render correctly.
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.5em 0;
   }
 
-  /* kramdown */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    font-size: 0.85em; // slightly smaller inside narrow sidenote column
+    margin: 0.5em 0;
+  }
+
+  code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  // If code is inside a <pre> honour pre-formatting (don't wrap)
+  pre code {
+    white-space: pre;
+    word-break: normal;
+  }
+
+  // Contain any absolutely/fixed-positioned elements produced by scripts
+  // (e.g. anime.js — sets up a local stacking context without clipping)
+  &:has(script) {
+    isolation: isolate;
+  }
+
+  /* kramdown back-reference */
   .reversefootnote {
     display: none;
   }
 
-  /* commonmark */
+  /* commonmark back-reference */
   .footnote-backref {
     display: none;
   }

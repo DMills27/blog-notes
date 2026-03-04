@@ -17,7 +17,7 @@
     bundix,
     ruby-nix
   }: let
-    system = "aarch64-darwin";
+    system = "x86_64-linux";
 
     pkgs = import nixpkgs {
       inherit system;

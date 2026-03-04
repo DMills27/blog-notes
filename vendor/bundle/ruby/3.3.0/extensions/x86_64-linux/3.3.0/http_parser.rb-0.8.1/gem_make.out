@@ -1,0 +1,16 @@
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/http_parser.rb-0.8.1/ext/ruby_http_parser
+/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/bin/ruby -I /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/lib/ruby/3.3.0 extconf.rb
+creating Makefile
+
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/http_parser.rb-0.8.1/ext/ruby_http_parser
+make DESTDIR\= sitearchdir\=./.gem.20260303-2413246-x62t6x sitelibdir\=./.gem.20260303-2413246-x62t6x clean
+
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/http_parser.rb-0.8.1/ext/ruby_http_parser
+make DESTDIR\= sitearchdir\=./.gem.20260303-2413246-x62t6x sitelibdir\=./.gem.20260303-2413246-x62t6x
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.so
+
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/http_parser.rb-0.8.1/ext/ruby_http_parser
+make DESTDIR\= sitearchdir\=./.gem.20260303-2413246-x62t6x sitelibdir\=./.gem.20260303-2413246-x62t6x install
+install -c -p -m 755 ruby_http_parser.so ./.gem.20260303-2413246-x62t6x

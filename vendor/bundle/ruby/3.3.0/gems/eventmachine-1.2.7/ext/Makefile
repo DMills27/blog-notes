@@ -13,12 +13,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/include/ruby-3.3.0
+topdir = /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0
 hdrdir = $(topdir)
-arch_hdrdir = /nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/include/ruby-3.3.0/arm64-darwin24
+arch_hdrdir = /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10
+prefix = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -42,60 +42,60 @@ archincludedir = $(includedir)/$(arch)
 sitearchlibdir = $(libdir)/$(sitearch)
 archlibdir = $(libdir)/$(arch)
 ridir = $(datarootdir)/$(RI_BASE_NAME)/share/ri
-mandir = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/share/man
-localedir = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/share/locale
+mandir = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/share/man
+localedir = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/share/locale
 libdir = $(exec_prefix)/lib
 psdir = $(docdir)
 pdfdir = $(docdir)
 dvidir = $(docdir)
 htmldir = $(docdir)
-infodir = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/share/info
-docdir = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/share/doc/ruby
+infodir = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/share/info
+docdir = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/share/doc/ruby
 oldincludedir = $(DESTDIR)/usr/include
-includedir = $(SDKROOT)$(exec_prefix)/include
+includedir = $(exec_prefix)/include
 runstatedir = $(localstatedir)/run
 localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
 sysconfdir = $(prefix)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
-libexecdir = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/libexec
-sbindir = $(DESTDIR)/nix/store/wqlyjw8fyf26zkxd5zmjmcw9k1bhb4ia-ruby-3.3.10/sbin
+libexecdir = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/libexec
+sbindir = $(DESTDIR)/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/sbin
 bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
 
 
 CC_WRAPPER = 
-CC = clang
-CXX = clang++
+CC = gcc
+CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static -framework CoreFoundation $(MAINLIBS)
+LIBRUBYARG_SHARED = -Wl,-rpath,$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)
+LIBRUBYARG_STATIC = -Wl,-rpath,$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static $(MAINLIBS)
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
 CSRCFLAG = $(empty)
 
 RUBY_EXTCONF_H = 
-cflags   = -fdeclspec $(optflags) $(debugflags) $(warnflags)
+cflags   = $(optflags) $(debugflags) $(warnflags)
 cxxflags = 
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
-warnflags = -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef
+warnflags = -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef
 cppflags = 
-CCDLFLAGS = -fno-common
-CFLAGS   = $(CCDLFLAGS) $(cflags) -fno-common -pipe $(ARCH_FLAG)
+CCDLFLAGS = -fPIC
+CFLAGS   = $(CCDLFLAGS) -O3 -fPIC $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DBUILD_FOR_RUBY -DHAVE_RB_THREAD_CALL_WITHOUT_GVL -DHAVE_RB_THREAD_FD_SELECT -DHAVE_TYPE_RB_FDSET_T -DHAVE_RB_WAIT_FOR_SINGLE_FD -DHAVE_RB_TIME_NEW -DHAVE_WRITEV -DOS_UNIX -DHAVE_SYS_EVENT_H -DHAVE_SYS_QUEUE_H -DHAVE_KQUEUE -DOS_DARWIN -DHAVE_CLOCK_GETTIME -DHAVE_CONST_CLOCK_MONOTONIC_RAW -DHAVE_CONST_CLOCK_MONOTONIC -DHAVE_MAKE_PAIR -I/usr/local/opt/openssl/include -I/opt/local/include -I/usr/local/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
-CXXFLAGS = $(CCDLFLAGS) -fdeclspec $(ARCH_FLAG)
-ldflags  = -L. -fstack-protector-strong
-dldflags = -Wl,-multiply_defined,suppress -Wl,-undefined,dynamic_lookup 
-ARCH_FLAG = -arch arm64
+CPPFLAGS = -DBUILD_FOR_RUBY -DHAVE_RB_THREAD_CALL_WITHOUT_GVL -DHAVE_RB_THREAD_FD_SELECT -DHAVE_TYPE_RB_FDSET_T -DHAVE_RB_WAIT_FOR_SINGLE_FD -DHAVE_RB_TIME_NEW -DHAVE_INOTIFY_INIT -DHAVE_INOTIFY -DHAVE_WRITEV -DHAVE_PIPE2 -DHAVE_ACCEPT4 -DHAVE_CONST_SOCK_CLOEXEC -DOS_UNIX -DHAVE_EPOLL_CREATE -DHAVE_EPOLL -DHAVE_CLOCK_GETTIME -DHAVE_CONST_CLOCK_MONOTONIC_RAW -DHAVE_CONST_CLOCK_MONOTONIC -DHAVE_MAKE_PAIR -I/usr/local/opt/openssl/include -I/opt/local/include -I/usr/local/include  $(DEFS) $(cppflags)
+CXXFLAGS = $(CCDLFLAGS)  $(ARCH_FLAG)
+ldflags  = -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed
+dldflags = -Wl,--compress-debug-sections=zlib 
+ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
-LDSHARED = $(CXX) -dynamic -bundle
-LDSHAREDXX = $(CXX) -dynamic -bundle
+LDSHARED = $(CXX) -shared
+LDSHAREDXX = $(CXX) -shared
 AR = ar
 EXEEXT = 
 
@@ -106,7 +106,7 @@ RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = arm64-darwin24
+arch = x86_64-linux
 sitearch = $(arch)
 ruby_version = 3.3.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -128,7 +128,7 @@ TOUCH = exit >
 
 preload = 
 libpath = . $(libdir) /usr/local/opt/openssl/lib /opt/local/lib /usr/local/lib
-LIBPATH =  -L. -L$(libdir) -L/usr/local/opt/openssl/lib -L/opt/local/lib -L/usr/local/lib
+LIBPATH =  -L. -L$(libdir) -Wl,-rpath,$(libdir) -L/usr/local/opt/openssl/lib -Wl,-rpath,/usr/local/opt/openssl/lib -L/opt/local/lib -Wl,-rpath,/opt/local/lib -L/usr/local/lib -Wl,-rpath,/usr/local/lib
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -139,7 +139,7 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread  
+LIBS = $(LIBRUBYARG_SHARED)  -lm -lpthread  -lc
 ORIG_SRCS = binder.cpp cmain.cpp ed.cpp em.cpp kb.cpp page.cpp pipe.cpp rubymain.cpp ssl.cpp
 SRCS = $(ORIG_SRCS) 
 OBJS = binder.o cmain.o ed.o em.o kb.o page.o pipe.o rubymain.o ssl.o
@@ -148,7 +148,7 @@ LOCAL_HDRS =
 TARGET = rubyeventmachine
 TARGET_NAME = rubyeventmachine
 TARGET_ENTRY = Init_$(TARGET_NAME)
-DLLIB = $(TARGET).bundle
+DLLIB = $(TARGET).so
 EXTSTATIC = 
 STATIC_LIB = 
 
@@ -161,7 +161,7 @@ HDRDIR        = $(sitehdrdir)$(target_prefix)
 ARCHHDRDIR    = $(sitearchhdrdir)$(target_prefix)
 TARGET_SO_DIR =
 TARGET_SO     = $(TARGET_SO_DIR)$(DLLIB)
-CLEANLIBS     = $(TARGET_SO) $(TARGET_SO).dSYM
+CLEANLIBS     = $(TARGET_SO) false
 CLEANOBJS     = $(OBJS) *.bak
 TARGET_SO_DIR_TIMESTAMP = $(TIMESTAMP_DIR)/.sitearchdir.time
 
@@ -263,7 +263,6 @@ $(TARGET_SO): $(OBJS) Makefile
 	$(ECHO) linking shared-object $(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHAREDXX) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
-	$(Q) $(POSTLINK)
 
 
 

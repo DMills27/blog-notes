@@ -1,0 +1,25 @@
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/bin/ruby -I /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/lib/ruby/3.3.0 extconf.rb
+creating Makefile
+
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260303-2413246-rw3cmi sitelibdir\=./.gem.20260303-2413246-rw3cmi clean
+
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260303-2413246-rw3cmi sitelibdir\=./.gem.20260303-2413246-rw3cmi
+compiling mapper.cpp
+compiling rubymain.cpp
+In file included from /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0/ruby/internal/stdbool.h:31,
+                 from /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0/ruby/backward/2/bool.h:22,
+                 from /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0/ruby/defines.h:74,
+                 from /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0/ruby/ruby.h:25,
+                 from /nix/store/p0ii1d5mkwl0vzzryyfxmp36ss4jf4fs-ruby-3.3.10/include/ruby-3.3.0/ruby.h:38,
+                 from rubymain.cpp:25:
+/nix/store/qarrb8yfby1yyypm32vabzgxgq3w41ma-gcc-15.2.0/include/c++/15.2.0/cstdbool:50:6: warning: #warning "<cstdbool> is deprecated in C++17, remove the #include" [-Wcpp]
+   50 | #    warning "<cstdbool> is deprecated in C++17, remove the #include"
+      |      ^~~~~~~
+linking shared-object fastfilereaderext.so
+
+current directory: /home/dominics-ubuntu/Desktop/blog-notes/vendor/bundle/ruby/3.3.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20260303-2413246-rw3cmi sitelibdir\=./.gem.20260303-2413246-rw3cmi install
+install -c -p -m 755 fastfilereaderext.so ./.gem.20260303-2413246-rw3cmi

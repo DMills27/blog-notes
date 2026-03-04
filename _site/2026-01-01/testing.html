@@ -229,11 +229,274 @@ func main() {
 <pre><code>This is plain text (no language)
 </code></pre>
 
-<p>this is a test for the popup feature: <a href="https://en.wikipedia.org/wiki/Amber_Heard" data-popup-title="Amber Heard" data-popup-author="Wikipedia" data-popup-date="2025" data-popup-tags="actress,legal" data-popup-abstract="American actress involved in a high-profile defamation trial.">Wikipedia: Amber Heard</a></p>
+<h2 id="popup-examples">Popup examples</h2>
+
+<p><strong>All fields</strong> — title, author, date, tags, and abstract:</p>
+
+<p>Researchers studying memory have long relied on
+<a href="https://en.wikipedia.org/wiki/Spaced_repetition" data-popup-title="Spaced Repetition" data-popup-author="Wikipedia" data-popup-date="2024" data-popup-tags="memory,learning,psychology" data-popup-abstract="Spaced repetition is a learning technique that schedules reviews at increasing intervals. The spacing effect — memories are stronger when study is distributed over time rather than massed — is one of the most replicated findings in cognitive psychology.">spaced repetition</a>
+as a high-leverage study method.</p>
+
+<hr />
+
+<p><strong>Title + abstract only</strong> — the minimal useful popup:</p>
+
+<p>The concept of
+<a href="https://en.wikipedia.org/wiki/Emergence" data-popup-title="Emergence" data-popup-abstract="Emergence occurs when a system exhibits properties or behaviours that its individual parts do not possess. Classic examples include consciousness arising from neurons, wetness from water molecules, and traffic jams from individual drivers.">emergence</a>
+appears across physics, biology, and economics.</p>
+
+<hr />
+
+<p><strong>Title + author + date</strong> — no tags or abstract:</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Alan_Turing" data-popup-title="Alan Turing" data-popup-author="Wikipedia" data-popup-date="2024">Alan Turing</a>
+laid the theoretical foundations for modern computing.</p>
+
+<hr />
+
+<p><strong>Title only</strong> — the absolute minimum:</p>
+
+<p>See also:
+<a href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems" data-popup-title="Gödel's Incompleteness Theorems">Gödel’s incompleteness theorems</a>.</p>
+
+<hr />
+
+<h2 id="highlight-comments">Highlight comments</h2>
+
+<p>Unlike popups, highlight comments require <strong>no markup at all</strong> — any text in the post body is annotatable. Select any phrase in the paragraphs below to open the comment box.</p>
+
+<p>The spacing effect is one of the most replicated findings in cognitive psychology: memories consolidated across distributed practice sessions are retained far longer than those drilled in a single massed block. Spaced repetition software such as Anki exploits this by scheduling each card’s review just before the memory would decay.</p>
+
+<p>Emergence is the phenomenon whereby a system exhibits properties or behaviours that none of its individual parts possess in isolation. A canonical example is consciousness arising from neurons: no single neuron is conscious, yet their collective activity produces subjective experience. Other examples include wetness arising from water molecules, traffic jams from individual drivers, and market prices from individual buyers and sellers.</p>
+
+<p>What the system <strong>will not</strong> let you annotate:</p>
+
+<ul>
+  <li>Text inside <code>code spans</code> or fenced code blocks</li>
+  <li>The post title, author line, or tag chips at the top</li>
+</ul>
+
+<hr />
+
+<h2 id="animejs-in-sidenotes">Anime.js in sidenotes</h2>
+
+<p>Footnotes can contain live animations. On desktop each one appears in a sidenote to the right; on mobile it falls back to the standard footnote list. Every script uses <code>querySelectorAll('…')[last]</code> to capture the most recently inserted copy of its container, so the sidenote clone is targeted rather than the original element in the footnotes list.</p>
+
+<p>A rolling wave of five coloured dots<sup id="fnref:wave"><a href="#fn:wave" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> is the simplest case — <code>animate</code> with <code>stagger</code> and <code>loop</code>. A single SVG ring that draws and erases itself<sup id="fnref:ring"><a href="#fn:ring" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> shows <code>svg.createDrawable</code> called with a directly captured DOM element, which sidesteps the CSS-selector ID-conflict caveat entirely. A 4 × 4 grid that ripples outward from the centre<sup id="fnref:grid"><a href="#fn:grid" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> demonstrates <code>stagger</code> with the <code>grid</code> option inside a <code>createTimeline</code>.</p>
+
+<h2 id="animejs-animations">Anime.js animations</h2>
+
+<script src="/assets/js/anime.min.js"></script>
+
+<h3 id="1--staggered-wave-animate--stagger--loop">1 — Staggered wave (animate + stagger + loop)</h3>
+
+<p>Nine dots bounce in a wave. Each dot is delayed by 80 ms relative to its neighbour, creating a rolling effect.</p>
+
+<div id="demo-wave" style="display:flex;gap:12px;padding:2rem 1rem;justify-content:center;align-items:center;background:#f9f9f9;border-radius:8px;margin:1.5rem 0;">
+</div>
+
+<script>
+(function () {
+  const { animate, stagger, utils } = anime;
+
+  // Build dots in JS so the markdown stays readable.
+  const container = document.getElementById('demo-wave');
+  const colors = ['#5ae','#7bc','#a8e','#5cf','#79d','#55e','#5ae','#7bc','#a8e'];
+  colors.forEach(function (color) {
+    const dot = document.createElement('span');
+    dot.style.cssText = 'display:block;width:18px;height:18px;border-radius:50%;background:' + color + ';flex-shrink:0;';
+    container.appendChild(dot);
+  });
+
+  animate(container.querySelectorAll('span'), {
+    y: -28,
+    ease: 'inOut(2)',
+    duration: 480,
+    delay: stagger(90),
+    loop: true,
+    alternate: true,
+  });
+}());
+</script>
+
+<h3 id="2--svg-line-drawing-svgcreatedrawable--createtimeline--stagger">2 — SVG line drawing (svg.createDrawable + createTimeline + stagger)</h3>
+
+<p>Four concentric circles draw themselves in sequence, then loop. The <code>svg.createDrawable</code> helper exposes a <code>draw</code> property — a <code>"start end"</code> fraction pair that drives <code>stroke-dashoffset</code> automatically.</p>
+
+<div id="demo-svg" style="display:flex;justify-content:center;padding:1.5rem;background:#1c1c1e;border-radius:8px;margin:1.5rem 0;">
+  <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
+    <circle class="svg-ring" cx="110" cy="110" r="22" stroke="#5ae" stroke-width="3" />
+    <circle class="svg-ring" cx="110" cy="110" r="48" stroke="#7bc" stroke-width="2.5" />
+    <circle class="svg-ring" cx="110" cy="110" r="74" stroke="#a8e" stroke-width="2" />
+    <circle class="svg-ring" cx="110" cy="110" r="100" stroke="#5cf" stroke-width="1.5" />
+  </svg>
+</div>
+
+<script>
+(function () {
+  const { createTimeline, svg, stagger } = anime;
+
+  createTimeline({
+    loop: true,
+    loopDelay: 600,
+    defaults: { ease: 'inOut(3)', duration: 1000 },
+  })
+  .add(svg.createDrawable('#demo-svg .svg-ring'), {
+    draw: ['0 0', '0 1'],
+  }, stagger(250, { start: 0 }))
+  .add(svg.createDrawable('#demo-svg .svg-ring'), {
+    draw: ['0 1', '1 1'],
+  }, stagger(180, { start: 0, from: 'last' }))
+  .init();
+}());
+</script>
+
+<h3 id="3--grid-ripple-stagger-with-grid--from-center">3 — Grid ripple (stagger with grid + from center)</h3>
+
+<p>A 6 × 6 grid of squares scales in from the centre outward, then collapses back, on repeat. <code>stagger</code> accepts a <code>grid: [cols, rows]</code> option that computes each element’s delay based on its 2-D distance from the origin.</p>
+
+<div id="demo-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:1.25rem;background:#f9f9f9;border-radius:8px;margin:1.5rem 0;max-width:260px;margin-left:auto;margin-right:auto;">
+</div>
+
+<script>
+(function () {
+  const { createTimeline, stagger } = anime;
+  const COLS = 6, ROWS = 6;
+
+  const grid = document.getElementById('demo-grid');
+  for (var i = 0; i < COLS * ROWS; i++) {
+    var cell = document.createElement('div');
+    cell.style.cssText = 'aspect-ratio:1;border-radius:3px;background:#5ae;';
+    grid.appendChild(cell);
+  }
+
+  var cells = grid.querySelectorAll('div');
+
+  createTimeline({
+    loop: true,
+    loopDelay: 400,
+    defaults: { duration: 500 },
+  })
+  .add(cells, {
+    scale: [0, 1],
+    opacity: [0, 1],
+    ease: 'out(3)',
+    delay: stagger(55, { grid: [COLS, ROWS], from: 'center' }),
+  })
+  .add(cells, {
+    scale: 0,
+    opacity: 0,
+    ease: 'in(2)',
+    duration: 380,
+    delay: stagger(40, { grid: [COLS, ROWS], from: 'center' }),
+  })
+  .init();
+}());
+</script>
+
+<hr />
+
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1">
-      <p>This is the footnote text. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>This snippet shows the idea:</p>
+      <pre><code class="language-python">  def hello():
+      print("hello")
+</code></pre>
+      <p><a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:wave">
+      <p>A staggered dot wave:</p>
+
+      <div class="fn-wave" style="display:flex;gap:6px;padding:0.75rem 0.5rem;justify-content:center;align-items:center;background:#f9f9f9;border-radius:6px;"></div>
+
+      <script>
+(function () {
+  var els = document.querySelectorAll('.fn-wave');
+  var container = els[els.length - 1];
+  ['#5ae','#7bc','#a8e','#5cf','#55e'].forEach(function (c) {
+    var dot = document.createElement('span');
+    dot.style.cssText = 'display:block;width:10px;height:10px;border-radius:50%;background:' + c + ';flex-shrink:0;';
+    container.appendChild(dot);
+  });
+  anime.animate(container.querySelectorAll('span'), {
+    y: -14,
+    ease: 'inOut(2)',
+    duration: 500,
+    delay: anime.stagger(80),
+    loop: true,
+    alternate: true,
+  });
+}());
+</script>
+
+      <p><a href="#fnref:wave" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ring">
+      <p>A self-drawing SVG ring:</p>
+
+      <div class="fn-ring" style="display:flex;justify-content:center;padding:0.75rem;background:#1c1c1e;border-radius:6px;">
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+    <circle class="fn-ring-circle" cx="40" cy="40" r="30" stroke="#5ae" stroke-width="3" />
+  </svg>
+</div>
+
+      <script>
+(function () {
+  var containers = document.querySelectorAll('.fn-ring');
+  var container = containers[containers.length - 1];
+  var ring = container.querySelector('.fn-ring-circle');
+  anime.createTimeline({
+    loop: true,
+    loopDelay: 400,
+    defaults: { ease: 'inOut(3)', duration: 900 },
+  })
+  .add(anime.svg.createDrawable(ring), { draw: ['0 0', '0 1'] })
+  .add(anime.svg.createDrawable(ring), { draw: ['0 1', '1 1'] })
+  .init();
+}());
+</script>
+
+      <p><a href="#fnref:ring" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:grid">
+      <p>A 4 × 4 grid ripple from the centre:</p>
+
+      <div class="fn-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:0.75rem;background:#f9f9f9;border-radius:6px;max-width:120px;"></div>
+
+      <script>
+(function () {
+  var grids = document.querySelectorAll('.fn-grid');
+  var grid = grids[grids.length - 1];
+  for (var i = 0; i < 16; i++) {
+    var cell = document.createElement('div');
+    cell.style.cssText = 'aspect-ratio:1;border-radius:2px;background:#5ae;';
+    grid.appendChild(cell);
+  }
+  var cells = grid.querySelectorAll('div');
+  anime.createTimeline({
+    loop: true,
+    loopDelay: 400,
+    defaults: { duration: 400 },
+  })
+  .add(cells, {
+    scale: [0, 1],
+    opacity: [0, 1],
+    ease: 'out(3)',
+    delay: anime.stagger(50, { grid: [4, 4], from: 'center' }),
+  })
+  .add(cells, {
+    scale: 0,
+    opacity: 0,
+    ease: 'in(2)',
+    duration: 300,
+    delay: anime.stagger(40, { grid: [4, 4], from: 'center' }),
+  })
+  .init();
+}());
+</script>
+
+      <p><a href="#fnref:grid" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -255,7 +518,7 @@ func main() {
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-03 00:37:16 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-04 14:08:28 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>
@@ -295,4 +558,5 @@ func main() {
   <script src="/assets/js/highlight-code.js"></script>
 
   <script src="/assets/js/popup-lite.js"></script>
+  <script src="/assets/js/highlight-comments.js"></script>
 </html>
