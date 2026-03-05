@@ -26,7 +26,21 @@
     rubyNix = ruby-nix.lib pkgs;
 		bundixcli = bundix.packages.${system}.default;
 
-    deps = with pkgs; [ env ruby bundixcli ];
+    # LaTeX environment for TikZ → SVG compilation.
+    # pdflatex (scheme-basic) compiles .tex → .pdf;
+    # dvisvgm (--pdf mode) converts the PDF → SVG.
+    texlivePkgs = pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-basic   # core: latex, pdflatex, plain TeX, essential packages
+        standalone     # standalone document class — crops output to content
+        pgf            # TikZ / PGF + libraries (arrows, shapes, positioning…)
+        amsmath        # AMS math environments (\align, \gather, etc.) + latexsym
+        amscls         # AMS document classes (amsthm, amsart, etc.)
+        dvisvgm        # DVI/PDF → SVG converter (provides the dvisvgm binary)
+        ;
+    };
+
+    deps = with pkgs; [ env ruby bundixcli texlivePkgs ];
 
     inherit (rubyNix {
       name = "seroperson.gitlab.io";

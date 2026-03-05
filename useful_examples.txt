@@ -1,0 +1,7 @@
+https://flaviocorpa.com/how-to-add-estimated-reading-time-to-your-hakyll-blog.html
+
+https://polbarrachina.com/2022/05/23/latex-and-tikz-in-jekyll-posts
+
+Light + Dark Mode
+Authorisation for user login to comment on articles.
+Means to filter comments from various sites (Reddit, Bluesky, Discourse, etc) [Described here: https://abhinavsarkar.net/colophon/]
