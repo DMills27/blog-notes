@@ -19,7 +19,8 @@ Postgres integration for said comments.
 Redesign the comments so that the right side of the screen "unfurls" and reveals the comments in the way it looks on Medium
 Means to filter comments from various sites (Reddit, Bluesky, Discourse, etc) [Described here: https://abhinavsarkar.net/colophon/]
 
-
+Create a "graph view search" like Obsidian graph view that users to see relationships among their nodes and
+filter them with in search bar. Use the Anytype repo and see how that is implemented.
 ----------------------------------------
 
 https://taeer.bar-yam.me/blog/posts/stable-narhashes/
