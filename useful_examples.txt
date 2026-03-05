@@ -2,6 +2,13 @@ https://flaviocorpa.com/how-to-add-estimated-reading-time-to-your-hakyll-blog.ht
 
 https://polbarrachina.com/2022/05/23/latex-and-tikz-in-jekyll-posts
 
+https://tony-zorman.com/posts/hakyll-and-bibtex.html
+
+https://www.youtube.com/playlist?list=PLAcRGOHz_Nl7UZVdzoBhzwFn2YRorzCYv
+
+https://web.archive.org/web/20240827152938/https://open-research.gemmadanks.com/tutorials/how-to-add-in-text-citations-with-zotero-vscode-jekyll-scholar/
+
 Light + Dark Mode
 Authorisation for user login to comment on articles.
+Postgres integration tofor said comments.
 Means to filter comments from various sites (Reddit, Bluesky, Discourse, etc) [Described here: https://abhinavsarkar.net/colophon/]
