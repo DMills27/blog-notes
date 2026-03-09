@@ -172,9 +172,18 @@
   var dropdown = document.getElementById("nav-history");
 
   function positionDropdown() {
-    var rect = cursor.getBoundingClientRect();
-    dropdown.style.top  = (rect.bottom + 6) + "px";
+    var rect    = cursor.getBoundingClientRect();
+    var dropTop = rect.bottom + 6;
+    dropdown.style.top  = dropTop + "px";
     dropdown.style.left = rect.left + "px";
+
+    /* cap height just above the TOC "Contents" header if present */
+    var tocEl = document.getElementById("toc");
+    if (tocEl) {
+      var tocTop = tocEl.getBoundingClientRect().top;
+      dropdown.style.maxHeight  = Math.max(40, tocTop - dropTop - 10) + "px";
+      dropdown.style.overflowY  = "auto";
+    }
   }
 
   cursor.addEventListener("click", function (e) {
@@ -279,7 +288,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-09 23:06:04 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-09 23:17:31 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>

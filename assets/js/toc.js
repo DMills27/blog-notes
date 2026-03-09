@@ -75,14 +75,25 @@
   window.addEventListener('scroll', updateActive, { passive: true });
   updateActive();
 
-  /* --- center TOC horizontally in the left margin --- */
+  /* --- position TOC and align nav prompt above it --- */
   function positionToc() {
-    if (window.innerWidth <= 900) return; // mobile handles its own positioning
+    if (window.innerWidth <= 900) return;
     var postEl = document.querySelector('.post-toc-wrapper > .post');
     if (!postEl) return;
-    var postLeft = postEl.getBoundingClientRect().left;
-    var tocWidth = toc.offsetWidth;
-    toc.style.left = Math.max(8, (postLeft - tocWidth) / 2) + 'px';
+    var postLeft  = postEl.getBoundingClientRect().left;
+    var tocWidth  = toc.offsetWidth;
+    var tocLeft   = Math.max(8, (postLeft - tocWidth) / 2);
+    toc.style.left = tocLeft + 'px';
+
+    /* center nav-prompt horizontally above the TOC */
+    var navPrompt    = document.getElementById('nav-prompt');
+    var navContainer = document.querySelector('.nav-container');
+    if (navPrompt && navContainer) {
+      var containerLeft = navContainer.getBoundingClientRect().left;
+      var tocCenter     = tocLeft + tocWidth / 2;
+      var promptWidth   = navPrompt.offsetWidth;
+      navPrompt.style.marginLeft = Math.round(tocCenter - promptWidth / 2 - containerLeft) + 'px';
+    }
   }
   window.addEventListener('resize', positionToc);
   positionToc();
