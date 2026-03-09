@@ -51,11 +51,76 @@
 
   <body>
 
-    <nav class="nav">
+    <style>
+#nav-prompt {
+  font-family: monospace;
+  font-size: 1.05em;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: default;
+  user-select: none;
+}
+#nav-prefix {
+  color: #7aa2f7;
+}
+#nav-prompt-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1em;
+  background: currentColor;
+  margin-left: 3px;
+  cursor: pointer;
+  animation: nav-blink 1s steps(2, start) infinite;
+}
+@keyframes nav-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+#nav-history {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #0d0d0d;
+  border: 1px solid #333;
+  padding: 10px 14px;
+  min-width: 220px;
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 200;
+  font-family: monospace;
+  color: #eaeaea;
+  font-size: 0.88em;
+}
+#nav-history.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.nav-history-title {
+  color: #888;
+  margin-bottom: 6px;
+}
+.nav-history-item {
+  padding: 3px 0;
+  cursor: pointer;
+}
+.nav-history-item:hover {
+  color: #7aa2f7;
+}
+</style>
+
+<nav class="nav">
   <div class="nav-container">
-    <a href="/">
-      <h2 class="nav-title"><img src="/assets/favicon-32x32.png" srcset="/assets/favicon-64x64.png 2x, /assets/favicon-96x96.png 3x, /assets/favicon-128x128.png 4x, /assets/favicon-256x256.png 8x"> Tale</h2>
-    </a>
+    <div id="nav-prompt">
+      <span id="nav-prefix">&gt;&nbsp;</span><span id="nav-prompt-text"></span><span id="nav-prompt-cursor"></span>
+      <div id="nav-history">
+        <div class="nav-history-title">history</div>
+        <div id="nav-history-list"></div>
+      </div>
+    </div>
     <ul>
       <li><a href="/posts/">Posts</a></li>
       <li><a href="/tags/">Tags</a></li>
@@ -64,44 +129,100 @@
   </div>
 </nav>
 
+<script>
+(function () {
+  function getPromptPath() {
+    var p = window.location.pathname.replace(/\/$/, "");
+    return p === "" ? "~/blog" : "~" + p;
+  }
+
+  /* typing animation */
+  var fullText = getPromptPath();
+  var textEl   = document.getElementById("nav-prompt-text");
+  var i = 0;
+  function type() {
+    if (i < fullText.length) {
+      textEl.textContent += fullText[i++];
+      setTimeout(type, 50);
+    }
+  }
+  setTimeout(type, 200);
+
+  /* session history */
+  var path = window.location.pathname;
+  var hist = JSON.parse(sessionStorage.getItem("navHistory") || "[]");
+  if (!hist.includes(path)) hist.push(path);
+  sessionStorage.setItem("navHistory", JSON.stringify(hist));
+
+  /* render dropdown */
+  var histList = document.getElementById("nav-history-list");
+  hist.slice().reverse().forEach(function (p) {
+    var item = document.createElement("div");
+    item.className = "nav-history-item";
+    item.textContent = (p === "/" || p === "") ? "~/blog" : "~" + p.replace(/\/$/, "");
+    item.onclick = function () { window.location.href = p; };
+    histList.appendChild(item);
+  });
+
+  /* cursor click toggles dropdown */
+  var cursor   = document.getElementById("nav-prompt-cursor");
+  var dropdown = document.getElementById("nav-history");
+  cursor.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdown.classList.toggle("visible");
+  });
+  document.addEventListener("click", function () {
+    dropdown.classList.remove("visible");
+  });
+}());
+</script>
+
 
     <main>
-      <div class="post">
-  <div class="post-info">
-    
-    <span>Written</span>
-    
-    <span>by</span>
-    
-        dominic
-    
-      <br>
-    
+      <button class="toc-menu-button" id="tocMenuBtn">☰</button>
 
-    
-      <span>on&nbsp;</span><time datetime="2026-01-01 00:00:00 +0400">2026-01-01</time>
-    
-    
-  </div>
+<div class="post-toc-wrapper">
 
-  <h1 class="post-title">Pagination Post</h1>
+  <nav id="toc">
+    <p class="toc-mini-header">Contents <a id="toc-up-arrow" href="#">↑</a></p>
+    <ul id="toc-list"></ul>
+  </nav>
 
-  
-
-  
-    
-
-    <div class="tags-clouds">
+  <div class="post">
+    <div class="post-info">
       
-        <a href="/tags/#Tale">Tale</a>
+      <span>Written</span>
       
-    </div><br />
-  
+      <span>by</span>
+      
+          dominic
+      
+        <br>
+      
 
+      
+        <span>on&nbsp;</span><time datetime="2026-01-01 00:00:00 +0400">2026-01-01</time>
+      
+      
+    </div>
 
-  <div class="post-line"></div>
+    <h1 class="post-title">Pagination Post</h1>
 
-  <p>This is a test to see if I can generate pages.</p>
+    
+
+    
+      
+
+      <div class="tags-clouds">
+        
+          <a href="/tags/#Tale">Tale</a>
+        
+      </div><br />
+    
+
+    <div class="post-line"></div>
+
+    <p>This is a test to see if I can generate pages.</p>
 
 \[X^2 + Y^3 + D* = 102\]
 
@@ -559,7 +680,7 @@ laid the theoretical foundations for modern computing.</p>
   </ol>
 </div>
 
-  <div class="bibliography">
+    <div class="bibliography">
   <h2 id="references">References</h2>
   <div class="bibliography-list">
     <div class="bibliography-entry" id="ref-smith2020">Smith, J., &amp; Doe, J. (2020). An Example Article on Interesting Things. <i>Journal of Examples</i>, <i>42</i>(3), 1–10. https://doi.org/10.0000/example.2020</div>
@@ -567,6 +688,8 @@ laid the theoretical foundations for modern computing.</p>
       <div class="bibliography-entry" id="ref-chen2021">Chen, B., &amp; Li, C. (2021). Proceedings Paper on a Specific Topic. <i>Proceedings of the International Conference on Examples</i>, 200–215.</div>
   </div>
 </div>
+
+  </div>
 
 </div>
 
@@ -581,11 +704,13 @@ laid the theoretical foundations for modern computing.</p>
   <a href="#" class="top">⇈</a>
 </div>
 
+<script src="/assets/js/toc.js"></script>
+
     </main>
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-09 18:21:03 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-09 23:00:16 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>

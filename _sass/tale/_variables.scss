@@ -12,7 +12,26 @@ $code-color: #b67 !default;
 $highlight-color: #f80 !default;
 
 // Fonts
-$serif-primary: 'Merriweather', 'Georgia', 'Times New Roman', Times, serif !default;
+@font-face {
+  font-family: 'Alegreya';
+  src: url('/Alegreya-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Alegreya';
+  src: url('/Alegreya-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Alegreya';
+  src: url('/Alegreya-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+$serif-primary: 'Alegreya', 'Georgia', 'Times New Roman', Times, serif !default;
 $serif-secondary: $serif-primary;
 $sans-serif: 'Source Sans Pro', 'Segoe UI', Helvetica, Arial, sans-serif !default;
 $monospaced: 'Source Code Pro', Menlo, Monaco, monospace !default;
