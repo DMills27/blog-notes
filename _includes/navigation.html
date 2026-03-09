@@ -120,9 +120,10 @@
 
   function positionDropdown() {
     var rect    = cursor.getBoundingClientRect();
+    var prefix  = document.getElementById("nav-prefix");
     var dropTop = rect.bottom + 6;
     dropdown.style.top  = dropTop + "px";
-    dropdown.style.left = rect.left + "px";
+    dropdown.style.left = (prefix ? prefix.getBoundingClientRect().left : rect.left) + "px";
 
     /* cap height just above the TOC "Contents" header if present */
     var tocEl = document.getElementById("toc");

@@ -173,9 +173,10 @@
 
   function positionDropdown() {
     var rect    = cursor.getBoundingClientRect();
+    var prefix  = document.getElementById("nav-prefix");
     var dropTop = rect.bottom + 6;
     dropdown.style.top  = dropTop + "px";
-    dropdown.style.left = rect.left + "px";
+    dropdown.style.left = (prefix ? prefix.getBoundingClientRect().left : rect.left) + "px";
 
     /* cap height just above the TOC "Contents" header if present */
     var tocEl = document.getElementById("toc");
@@ -256,7 +257,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-09 23:17:31 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-09 23:20:54 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>
