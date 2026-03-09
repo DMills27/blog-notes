@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-05T16:18:52+04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tale</title><subtitle>Minimal Jekyll theme for storytellers</subtitle><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><entry><title type="html">Pagination Post</title><link href="http://localhost:4000/2026-01-01/testing" rel="alternate" type="text/html" title="Pagination Post" /><published>2026-01-01T00:00:00+04:00</published><updated>2026-01-01T00:00:00+04:00</updated><id>http://localhost:4000/2026-01-01/testing</id><content type="html" xml:base="http://localhost:4000/2026-01-01/testing"><![CDATA[<p>This is a test to see if I can generate pages.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-09T18:21:03+04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tale</title><subtitle>Minimal Jekyll theme for storytellers</subtitle><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><entry><title type="html">Pagination Post</title><link href="http://localhost:4000/2026-01-01/testing" rel="alternate" type="text/html" title="Pagination Post" /><published>2026-01-01T00:00:00+04:00</published><updated>2026-01-01T00:00:00+04:00</updated><id>http://localhost:4000/2026-01-01/testing</id><content type="html" xml:base="http://localhost:4000/2026-01-01/testing"><![CDATA[<p>This is a test to see if I can generate pages.</p>
 
 \[X^2 + Y^3 + D* = 102\]
 
@@ -125,6 +125,22 @@ func main() {
 
 <pre><code>This is plain text (no language)
 </code></pre>
+
+<h2 id="bibtex-citations">BibTeX citations</h2>
+
+<p>Citations use Pandoc-style <code>[@key]</code> syntax. The plugin processes them after Kramdown renders the Markdown, so they require no special template tags.</p>
+
+<p>A single citation: the spacing effect is one of the most replicated findings in cognitive psychology [@smith2020].</p>
+
+<p>A group citation in one bracket: several authors have discussed this phenomenon in depth [@smith2020; @jones2019].</p>
+
+<p>A book reference is handled the same way [@jones2019]. Conference papers work too [@chen2021].</p>
+
+<p>Suppress the author name with a leading <code>-</code> — useful mid-sentence when the author is already named. As Jones [-@jones2019] argues, the principle generalises broadly.</p>
+
+<p>A References section is automatically appended at the end of this post.</p>
+
+<hr />
 
 <h2 id="popup-examples">Popup examples</h2>
 

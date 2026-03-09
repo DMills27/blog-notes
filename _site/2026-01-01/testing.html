@@ -229,6 +229,22 @@ func main() {
 <pre><code>This is plain text (no language)
 </code></pre>
 
+<h2 id="bibtex-citations">BibTeX citations</h2>
+
+<p>Citations use Pandoc-style <code>[@key]</code> syntax. The plugin processes them after Kramdown renders the Markdown, so they require no special template tags.</p>
+
+<p>A single citation: the spacing effect is one of the most replicated findings in cognitive psychology <span class="citation">(Smith &amp; Doe, 2020)</span>.</p>
+
+<p>A group citation in one bracket: several authors have discussed this phenomenon in depth <span class="citation">(Smith &amp; Doe, 2020; Jones, 2019)</span>.</p>
+
+<p>A book reference is handled the same way <span class="citation">(Jones, 2019)</span>. Conference papers work too <span class="citation">(Chen &amp; Li, 2021)</span>.</p>
+
+<p>Suppress the author name with a leading <code>-</code> — useful mid-sentence when the author is already named. As Jones <span class="citation">(Jones, 2019)</span> argues, the principle generalises broadly.</p>
+
+<p>A References section is automatically appended at the end of this post.</p>
+
+<hr />
+
 <h2 id="popup-examples">Popup examples</h2>
 
 <p><strong>All fields</strong> — title, author, date, tags, and abstract:</p>
@@ -543,6 +559,15 @@ laid the theoretical foundations for modern computing.</p>
   </ol>
 </div>
 
+  <div class="bibliography">
+  <h2 id="references">References</h2>
+  <div class="bibliography-list">
+    <div class="bibliography-entry" id="ref-smith2020">Smith, J., &amp; Doe, J. (2020). An Example Article on Interesting Things. <i>Journal of Examples</i>, <i>42</i>(3), 1–10. https://doi.org/10.0000/example.2020</div>
+      <div class="bibliography-entry" id="ref-jones2019">Jones, A. (2019). <i>The Definitive Guide to Examples</i>. Example Press.</div>
+      <div class="bibliography-entry" id="ref-chen2021">Chen, B., &amp; Li, C. (2021). Proceedings Paper on a Specific Topic. <i>Proceedings of the International Conference on Examples</i>, 200–215.</div>
+  </div>
+</div>
+
 </div>
 
 
@@ -560,7 +585,7 @@ laid the theoretical foundations for modern computing.</p>
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-05 16:18:52 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-09 18:21:03 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>

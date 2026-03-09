@@ -44,6 +44,15 @@ plugins:
 permalink:      /:year-:month-:day/:title
 paginate:       5
 
+# BibTeX / CSL citation support (_plugins/bibtex.rb)
+# bibliography: path to the .bib file, relative to the site root
+# style:        built-in CSL style name (apa, ieee, chicago-author-date, …)
+#               browse full list at https://www.zotero.org/styles
+# csl:          (optional) path to a custom .csl file; takes precedence over style:
+bibtex:
+  bibliography: _bib/bibliography.bib
+  style:        apa
+
 # Excludes
 exclude: [ Gemfile, Gemfile.lock, tale.gemspec, anime, "untitled folder" ]
 
