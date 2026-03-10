@@ -139,17 +139,44 @@
     return p === "" ? "~/blog" : "~/blog" + p;
   }
 
-  /* typing animation */
+  /* pre-fill invisibly so the element has its final width for positioning */
   var fullText = getPromptPath();
   var textEl   = document.getElementById("nav-prompt-text");
-  var i = 0;
-  function type() {
-    if (i < fullText.length) {
-      textEl.textContent += fullText[i++];
-      setTimeout(type, 50);
+  textEl.style.visibility = "hidden";
+  textEl.textContent = fullText;
+
+  /* called by toc.js after centering, or by the load fallback on non-TOC pages */
+  window.__startNavTyping = function () {
+    window.__startNavTyping = null;
+    textEl.textContent = "";
+    textEl.style.visibility = "";
+    var i = 0;
+    function type() {
+      if (i < fullText.length) {
+        textEl.textContent += fullText[i++];
+        setTimeout(type, 50);
+      }
     }
-  }
-  setTimeout(type, 200);
+    setTimeout(type, 200);
+  };
+
+  /* fallback for pages without a TOC — replicate the same centering */
+  window.addEventListener("load", function () {
+    if (!window.__startNavTyping) return;
+    var navPrompt    = document.getElementById("nav-prompt");
+    var navContainer = document.querySelector(".nav-container");
+    var postEl       = document.querySelector("main");
+    if (navPrompt && navContainer && postEl) {
+      var tocWidth      = 180; /* matches #toc width in _toc.scss */
+      var postLeft      = postEl.getBoundingClientRect().left;
+      var tocLeft       = Math.max(8, (postLeft - tocWidth) / 2);
+      var tocCenter     = tocLeft + tocWidth / 2;
+      var containerLeft = navContainer.getBoundingClientRect().left;
+      var promptWidth   = navPrompt.offsetWidth;
+      navPrompt.style.marginLeft = Math.round(tocCenter - promptWidth / 2 - containerLeft) + "px";
+    }
+    window.__startNavTyping();
+  });
 
   /* session history */
   var path = window.location.pathname;
@@ -264,7 +291,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-09 23:20:54 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-09 23:53:27 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>

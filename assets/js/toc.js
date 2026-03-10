@@ -94,6 +94,9 @@
       var promptWidth   = navPrompt.offsetWidth;
       navPrompt.style.marginLeft = Math.round(tocCenter - promptWidth / 2 - containerLeft) + 'px';
     }
+
+    /* now that centering is done, start the typing animation (runs once) */
+    if (window.__startNavTyping) window.__startNavTyping();
   }
   window.addEventListener('resize', positionToc);
   positionToc();

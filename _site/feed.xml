@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-09T23:20:54+04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tale</title><subtitle>Minimal Jekyll theme for storytellers</subtitle><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><entry><title type="html">Pagination Post</title><link href="http://localhost:4000/2026-01-01/testing" rel="alternate" type="text/html" title="Pagination Post" /><published>2026-01-01T00:00:00+04:00</published><updated>2026-01-01T00:00:00+04:00</updated><id>http://localhost:4000/2026-01-01/testing</id><content type="html" xml:base="http://localhost:4000/2026-01-01/testing"><![CDATA[<p>This is a test to see if I can generate pages.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-09T23:53:27+04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tale</title><subtitle>Minimal Jekyll theme for storytellers</subtitle><author><name>Chester How</name><email>chesterhow@gmail.com</email></author><entry><title type="html">Pagination Post</title><link href="http://localhost:4000/2026-01-01/testing" rel="alternate" type="text/html" title="Pagination Post" /><published>2026-01-01T00:00:00+04:00</published><updated>2026-01-01T00:00:00+04:00</updated><id>http://localhost:4000/2026-01-01/testing</id><content type="html" xml:base="http://localhost:4000/2026-01-01/testing"><![CDATA[<p>This is a test to see if I can generate pages.</p>
 
 \[X^2 + Y^3 + D* = 102\]
+
+<blockquote>
+  <p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+
+  <p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
+</blockquote>
+
+<p>https://www.markdownguide.org/basic-syntax/</p>
 
 <p>Here is a sentence with a footnote.<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup></p>
 
