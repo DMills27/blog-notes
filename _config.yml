@@ -54,7 +54,7 @@ bibtex:
   style:        apa
 
 # Excludes
-exclude: [ Gemfile, Gemfile.lock, tale.gemspec, anime, "untitled folder" ]
+exclude: [ Gemfile, Gemfile.lock, tale.gemspec, anime, "untitled folder", dark-mode-toggle.mjs ]
 
 # Disqus (Set to your disqus id)
 disqus:         jekyll-tale

@@ -26,6 +26,17 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/dark.css" media="(prefers-color-scheme: dark)">
+
+  <!-- Syntax highlight themes (controlled by dark-mode-toggle) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" media="(prefers-color-scheme: dark)">
+
+  <!-- Capture link references before FOUC changes media, then apply saved theme -->
+  <script>(function(){try{var d=Array.prototype.slice.call(document.querySelectorAll('link[media*="prefers-color-scheme"][media*=dark],style[media*="prefers-color-scheme"][media*=dark]'));var l=Array.prototype.slice.call(document.querySelectorAll('link[media*="prefers-color-scheme"][media*=light],style[media*="prefers-color-scheme"][media*=light]'));window.__pcsLinks={dark:d,light:l};var s=localStorage.getItem('dark-mode-toggle');if(!s||s!=='dark'&&s!=='light')return;var w=s==='dark';d.forEach(function(x){x.media=w?'all':'not all';x.disabled=!w;});l.forEach(function(x){x.media=w?'not all':'all';x.disabled=w;});}catch(e){}})();</script>
+
+  <!-- Dark mode toggle web component -->
+  <script type="module" src="/assets/js/dark-mode-toggle.mjs"></script>
 
   <!-- scripts -->
   <script src="/assets/js/jquery.min.js"></script>
@@ -110,6 +121,35 @@
 .nav-history-item:hover {
   color: #7aa2f7;
 }
+
+/* Centre all nav items on the same midline */
+.nav li {
+  vertical-align: middle;
+}
+
+/* Use flexbox to vertically centre the prompt + links within the nav bar */
+@media (min-width: 600px) {
+  .nav-container {
+    display: flex;
+    align-items: center;
+  }
+  .nav ul {
+    position: static;
+    margin: 0;
+    margin-left: auto;
+  }
+}
+/* Dark mode toggle button in nav */
+dark-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  --dark-mode-toggle-icon-size: 1rem;
+  --dark-mode-toggle-light-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23888' d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E");
+  --dark-mode-toggle-dark-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cline x1='12' y1='1' x2='12' y2='3'/%3E%3Cline x1='12' y1='21' x2='12' y2='23'/%3E%3Cline x1='4.22' y1='4.22' x2='5.64' y2='5.64'/%3E%3Cline x1='18.36' y1='18.36' x2='19.78' y2='19.78'/%3E%3Cline x1='1' y1='12' x2='3' y2='12'/%3E%3Cline x1='21' y1='12' x2='23' y2='12'/%3E%3Cline x1='4.22' y1='19.78' x2='5.64' y2='18.36'/%3E%3Cline x1='18.36' y1='5.64' x2='19.78' y2='4.22'/%3E%3C/svg%3E");
+}
+dark-mode-toggle::part(fieldset) {
+  padding-block: 0;
+}
 </style>
 
 <nav class="nav">
@@ -121,6 +161,9 @@
       <li><a href="/posts/">Posts</a></li>
       <li><a href="/tags/">Tags</a></li>
       <li><a href="/about/">About</a></li>
+      <li class="nav-toggle-item">
+        <dark-mode-toggle id="dark-mode-toggle" appearance="toggle" permanent></dark-mode-toggle>
+      </li>
     </ul>
   </div>
 </nav>
@@ -299,7 +342,7 @@
 
     <footer>
   <span>
-    &copy; <time datetime="2026-03-09 23:53:27 +0400">2026</time> Chester How. I speak only for myself.
+    &copy; <time datetime="2026-03-10 14:58:43 +0400">2026</time> Chester How. I speak only for myself.
     <!-- Made with Jekyll using a customized https://github.com/chesterhow/tale/ theme. -->
   </span>
 </footer>

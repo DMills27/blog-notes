@@ -1,24 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Load highlight.js theme stylesheets, scoped by prefers-color-scheme
-  // so only the matching theme applies.
-  function loadStyleSheet(src, media) {
-    var el  = document.createElement('link');
-    el.rel  = 'stylesheet';
-    el.href = src;
-    if (media) el.media = media;
-    document.head.appendChild(el);
-    return el;
-  }
-
-  loadStyleSheet(
-    'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css',
-    '(prefers-color-scheme: dark)'
-  );
-  loadStyleSheet(
-    'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css',
-    '(prefers-color-scheme: no-preference), (prefers-color-scheme: light)'
-  );
-
   // Highlight all code blocks.
   // Skip pre.pandoc-highlight to preserve build-time <mark> tags.
   document.querySelectorAll('pre:not(.pandoc-highlight) > code')

@@ -11,14 +11,6 @@
   --code-border-color: #ababab;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --code-bgcolor:      #282c34;
-    --code-lnum-color:   #d58989;
-    --code-border-color: #545454;
-  }
-}
-
 // ── Pre / code base ─────────────────────────────────────────────────────────
 
 pre {
