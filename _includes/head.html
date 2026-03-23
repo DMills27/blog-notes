@@ -6,6 +6,17 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/assets/dark.css" | relative_url }}" media="(prefers-color-scheme: dark)">
+
+  <!-- Syntax highlight themes (controlled by dark-mode-toggle) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" media="(prefers-color-scheme: dark)">
+
+  <!-- Capture link references before FOUC changes media, then apply saved theme -->
+  <script>(function(){try{var d=Array.prototype.slice.call(document.querySelectorAll('link[media*="prefers-color-scheme"][media*=dark],style[media*="prefers-color-scheme"][media*=dark]'));var l=Array.prototype.slice.call(document.querySelectorAll('link[media*="prefers-color-scheme"][media*=light],style[media*="prefers-color-scheme"][media*=light]'));window.__pcsLinks={dark:d,light:l};var s=localStorage.getItem('dark-mode-toggle');if(!s||s!=='dark'&&s!=='light')return;var w=s==='dark';d.forEach(function(x){x.media=w?'all':'not all';x.disabled=!w;});l.forEach(function(x){x.media=w?'not all':'all';x.disabled=w;});}catch(e){}})();</script>
+
+  <!-- Dark mode toggle web component -->
+  <script type="module" src="{{ "/assets/js/dark-mode-toggle.mjs" | relative_url }}"></script>
 
   <!-- scripts -->
   <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
